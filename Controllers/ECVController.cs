@@ -1,0 +1,77 @@
+﻿using EstudoCRUDAPI.Models;
+using EstudoCRUDAPI.Repositories;
+using EstudoCRUDAPI.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EstudoCRUDAPI.Controllers
+{
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ECVController : ControllerBase
+    {
+        private readonly IECVRepository _ecvService;
+
+
+        public ECVController(IECVRepository ecvService)
+        {
+            _ecvService = ecvService;
+        }
+
+        [HttpGet("ListarECVs")]
+        public IActionResult ListarECVs()
+        {
+            try
+            {
+                var ecvs = _ecvService.getAll();
+                return Ok(ecvs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("CadastrarECV")]
+        public IActionResult CadastrarECV([FromBody] ECV ecv)
+        {
+            try
+            {
+                _ecvService.add(ecv);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("ExcluirECV")]
+        public IActionResult ExcluirECV(int id)
+        {
+            try
+            {
+                _ecvService.deleteById(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("AtualizarECV/{id}")]
+        public IActionResult AtulizarECV(int id, [FromBody] ECV ecv)
+        {
+            try
+            {
+                _ecvService.update(ecv);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
+}
