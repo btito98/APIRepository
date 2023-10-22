@@ -7,7 +7,7 @@ namespace EstudoCRUDAPI.Repositories
         ECV getById(int id);
         List<ECV> getAll();
         void add(ECV ecv);
-        void update(ECV ecv);
+        void update(int id, ECV ecv);
         void deleteById(int id);
     }
 }

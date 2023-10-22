@@ -38,13 +38,20 @@ namespace EstudoCRUDAPI.Repositories
             return _context.ECVs.Find(id);
         }
 
-        public void update(ECV ecv)
+        public void update(int id, ECV ecv)
         {
-            var ecvAtual = _context.ECVs.Find(ecv.Id);
-            ecvAtual.Nome = ecv.Nome;
-            ecvAtual.Status = ecv.Status;
-            _context.Update(ecvAtual);
-            _context.SaveChanges();
+            var ecvAtual = _context.ECVs.Find(id);
+
+            if (ecvAtual != null)
+            {
+                ecvAtual.Nome = ecv.Nome;
+                ecvAtual.Status = ecv.Status;
+                _context.Update(ecvAtual);
+                _context.SaveChanges();
+            }else
+            {
+                throw new Exception("ECV não localizada!");
+            }
 
         }
     }

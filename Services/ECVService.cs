@@ -27,9 +27,9 @@ namespace EstudoCRUDAPI.Services
             _ecvRepository.add(ecv);            
         }
 
-        public void AtualizarECV(ECV ecv)
+        public void AtualizarECV(int id, ECV ecv)
         {
-            _ecvRepository.update(ecv);
+            _ecvRepository.update(id, ecv);
         }
 
         public void DeletarECV(int id)

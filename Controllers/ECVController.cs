@@ -65,7 +65,7 @@ namespace EstudoCRUDAPI.Controllers
         {
             try
             {
-                _ecvService.update(ecv);
+                _ecvService.update(id, ecv);
                 return Ok();
             }
             catch (Exception e)
