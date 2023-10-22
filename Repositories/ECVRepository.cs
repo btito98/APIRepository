@@ -13,6 +13,12 @@ namespace EstudoCRUDAPI.Repositories
 
         public void add(ECV ecv)
         {
+            bool ecvExists = _context.ECVs.Any(e => e.Nome == ecv.Nome);
+            if (ecvExists)
+            {
+                throw new Exception("ECV Já cadastrada!");
+            }
+
             _context.Add(ecv);
             _context.SaveChanges();
         }
@@ -48,7 +54,8 @@ namespace EstudoCRUDAPI.Repositories
                 ecvAtual.Status = ecv.Status;
                 _context.Update(ecvAtual);
                 _context.SaveChanges();
-            }else
+            }
+            else
             {
                 throw new Exception("ECV não localizada!");
             }
