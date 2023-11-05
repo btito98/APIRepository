@@ -1,4 +1,5 @@
-﻿using EstudoCRUDAPI.Models;
+﻿using EstudoCRUDAPI.DTOs;
+using EstudoCRUDAPI.Models;
 using EstudoCRUDAPI.Repositories;
 
 namespace EstudoCRUDAPI.Services
@@ -22,9 +23,9 @@ namespace EstudoCRUDAPI.Services
             return _vistoriaRepository.getById(id);
         }
 
-        public void AdicionarVistoria(Vistoria vistoria)
+        public void AdicionarVistoria(VistoriaRequestDTO vistoriaRequest)
         {
-            _vistoriaRepository.add(vistoria);
+            _vistoriaRepository.add(vistoriaRequest);
         }
 
         public void DeletarVistoria (int id)

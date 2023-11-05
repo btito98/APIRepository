@@ -8,6 +8,7 @@ namespace EstudoCRUDAPI.Models
         public int OS { get; set; }
         public string nomeVistoriador { get; set; }
         public StatusVistoria statusVistoria  { get; set; }
+        public int ECVId { get; set; }
         public ECV ECV { get; set; }
     }
 }

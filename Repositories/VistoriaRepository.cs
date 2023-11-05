@@ -1,4 +1,7 @@
-﻿using EstudoCRUDAPI.Models;
+﻿using EstudoCRUDAPI.DTOs;
+using EstudoCRUDAPI.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace EstudoCRUDAPI.Repositories
 {
@@ -11,9 +14,32 @@ namespace EstudoCRUDAPI.Repositories
             _context = context;
         }
 
-        public void add(Vistoria vistoria)
+        public void add(VistoriaRequestDTO  vistoriaRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ecv = _context.ECVs.Find(vistoriaRequest.ECVId);
+                if (ecv == null)
+                {
+                    throw new Exception("ECV não encontrada!");
+                }
+
+                var novaVistoria = new Vistoria
+                {
+                    OS = vistoriaRequest.Vistoria.OS,
+                    nomeVistoriador = vistoriaRequest.Vistoria.nomeVistoriador,
+                    statusVistoria = vistoriaRequest.Vistoria.statusVistoria,
+                    ECVId = vistoriaRequest.ECVId,
+                    ECV = ecv
+                };
+
+                _context.Add(novaVistoria);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void deleteById(int id)
@@ -23,7 +49,7 @@ namespace EstudoCRUDAPI.Repositories
 
         public List<Vistoria> getAll()
         {
-            throw new NotImplementedException();
+            return _context.Vistorias.Include(v => v.ECV).ToList();
         }
 
         public Vistoria getById(int id)

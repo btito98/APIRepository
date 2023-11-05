@@ -1,4 +1,5 @@
-﻿using EstudoCRUDAPI.Models;
+﻿using EstudoCRUDAPI.DTOs;
+using EstudoCRUDAPI.Models;
 
 namespace EstudoCRUDAPI.Repositories
 {
@@ -6,7 +7,7 @@ namespace EstudoCRUDAPI.Repositories
     {
         Vistoria getById(int id);
         List<Vistoria> getAll();
-        void add(Vistoria vistoria);
+        void add(VistoriaRequestDTO vistoriaRequest);
         void update(Vistoria vistoria);
         void deleteById(int id);
         
