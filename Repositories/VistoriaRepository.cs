@@ -14,7 +14,7 @@ namespace EstudoCRUDAPI.Repositories
             _context = context;
         }
 
-        public void add(VistoriaRequestDTO  vistoriaRequest)
+        public void add(VistoriaRequestDTO vistoriaRequest)
         {
             try
             {
@@ -44,7 +44,14 @@ namespace EstudoCRUDAPI.Repositories
 
         public void deleteById(int id)
         {
-            throw new NotImplementedException();
+            var vistoria = _context.Vistorias.Find(id);
+
+            if (vistoria != null)
+            {
+                _context.Remove(vistoria);
+                _context.SaveChanges();
+            }
+
         }
 
         public List<Vistoria> getAll()
@@ -54,12 +61,29 @@ namespace EstudoCRUDAPI.Repositories
 
         public Vistoria getById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Vistorias.Find(id);    
         }
 
-        public void update(Vistoria vistoria)
+        public void update(int id, VistoriaRequestDTO vistoriaRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var vistoriaAtual = _context.Vistorias.FirstOrDefault(v => v.Id == id);
+
+                if (vistoriaAtual == null)
+                    throw new Exception("Vistoria não encontrada!");
+
+                vistoriaAtual.OS = vistoriaRequest.Vistoria.OS;
+                vistoriaAtual.nomeVistoriador = vistoriaRequest.Vistoria.nomeVistoriador;
+                vistoriaAtual.statusVistoria = vistoriaRequest.Vistoria.statusVistoria;
+
+                _context.Update(vistoriaAtual);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

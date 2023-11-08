@@ -33,9 +33,9 @@ namespace EstudoCRUDAPI.Services
             _vistoriaRepository.deleteById(id);
         }
 
-        public void AtualizarVistoria(Vistoria vistoria)
+        public void AtualizarVistoria(int id, VistoriaRequestDTO vistoriaRequest)
         {
-            _vistoriaRepository.update(vistoria);
+            _vistoriaRepository.update(id, vistoriaRequest);
         }
     }
 }

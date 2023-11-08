@@ -8,7 +8,7 @@ namespace EstudoCRUDAPI.Repositories
         Vistoria getById(int id);
         List<Vistoria> getAll();
         void add(VistoriaRequestDTO vistoriaRequest);
-        void update(Vistoria vistoria);
+        void update(int id, VistoriaRequestDTO vistoriaRequest);
         void deleteById(int id);
         
     }
