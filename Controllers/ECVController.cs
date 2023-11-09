@@ -32,6 +32,21 @@ namespace EstudoCRUDAPI.Controllers
             }
         }
 
+        [HttpGet("ECVPorId/{id}")]  
+        public IActionResult ECVPorId(int id)
+        {
+            try
+            {
+                var ecv = _ecvService.getById(id);
+                return Ok(ecv);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
         [HttpPost("CadastrarECV")]
         public IActionResult CadastrarECV([FromBody] ECV ecv)
         {
