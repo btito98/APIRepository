@@ -26,6 +26,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -40,6 +41,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
 
@@ -55,6 +57,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -69,6 +72,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -83,6 +87,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }

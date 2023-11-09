@@ -28,6 +28,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -42,6 +43,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
 
@@ -57,6 +59,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -71,6 +74,7 @@ namespace EstudoCRUDAPI.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 return BadRequest(ex.Message);
             }
         }
@@ -83,9 +87,10 @@ namespace EstudoCRUDAPI.Controllers
                 _ecvService.update(id, ecv);
                 return Ok();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return BadRequest(e.Message);
+                Logger.LogException(ex);
+                return BadRequest(ex.Message);
             }
         }
     }

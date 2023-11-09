@@ -38,6 +38,7 @@ namespace EstudoCRUDAPI.Repositories
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 throw new Exception(ex.Message);
             }
         }
@@ -82,6 +83,7 @@ namespace EstudoCRUDAPI.Repositories
             }
             catch (Exception ex)
             {
+                Logger.LogException(ex);
                 throw new Exception(ex.Message);
             }
         }

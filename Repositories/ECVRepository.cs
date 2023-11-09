@@ -13,24 +13,41 @@ namespace EstudoCRUDAPI.Repositories
 
         public void add(ECV ecv)
         {
-            bool ecvExists = _context.ECVs.Any(e => e.Nome == ecv.Nome);
-            if (ecvExists)
+            try
             {
-                throw new Exception("ECV Já cadastrada!");
+                bool ecvExists = _context.ECVs.Any(e => e.Nome == ecv.Nome);
+                if (ecvExists)
+                {
+                    throw new Exception("ECV Já cadastrada!");
+                }
+
+                _context.Add(ecv);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                throw new Exception(ex.Message);
             }
 
-            _context.Add(ecv);
-            _context.SaveChanges();
         }
 
         public void deleteById(int id)
         {
-            var ecv = _context.ECVs.Find(id);
-
-            if (ecv != null)
+            try
             {
-                _context.ECVs.Remove(ecv);
-                _context.SaveChanges();
+                var ecv = _context.ECVs.Find(id);
+
+                if (ecv != null)
+                {
+                    _context.ECVs.Remove(ecv);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -57,6 +74,7 @@ namespace EstudoCRUDAPI.Repositories
             }
             else
             {
+                Logger.LogMessage("ECV não localizada!");
                 throw new Exception("ECV não localizada!");
             }
 
